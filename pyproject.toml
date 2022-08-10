@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mysqlclient-pool"
+version = "0.1.0"
+description = "MySQL database dynamic connection pool for 'mysqlclient' connector"
+readme = "README.md"    
+requires-python = ">=3.9"
+license = { file = "LICENSE.md" }
+authors = [{ name = "Saber Hayati", email = "SaberHayati@outlook.com" }]
+keywords = ["mysqlclient", "MySQLdb", "database", "connection pool"]
+urls = { homepage = "https://github.com/Soberia/mysqlclient-pool" }
+dependencies = ["mysqlclient"]
+optional-dependencies = { dev = ["build", "black"] }
+classifiers = [
+    "Topic :: Database",
+    "Programming Language :: Python",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
