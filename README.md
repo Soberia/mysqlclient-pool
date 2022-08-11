@@ -1,6 +1,6 @@
 # 💡 **About**
 
-This is a dynamic connection pool and size of it grows as it requires. Extra connections will be terminated automatically if they're no longer needed.
+This is a dynamic connection pool for [mysqlclient](https://github.com/PyMySQL/mysqlclient) connector and size of it grows as it requires. Extra connections will be terminated automatically if they're no longer needed.
 
 The connection pool won't check the connectivity state of the connections before passing them to the user because in any time is still possible for the connection to drop in middle of the query. The user itself should watch for the disconnections.
 
@@ -18,6 +18,7 @@ Instantiating the connection pool. The pool also can be instantiated as a contex
 
 ```python
 from mysqlclient_pool import ConnectionPool
+from MySQLdb._exceptions import OperationalError, ProgrammingError
 
 
 try:
@@ -74,6 +75,12 @@ with pool.fetch() as cursor:
       cursor.execute("DELETE FROM ...")
     finally:
       cursor.connection.autocommit(False)
+```
+
+Closing the pool when it's not needed anymore.
+
+```python
+pool.close()
 ```
 
 # 🔧 **API**
