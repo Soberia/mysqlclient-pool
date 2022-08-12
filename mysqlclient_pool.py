@@ -52,9 +52,13 @@ class ConnectionPool:
             The time in seconds to wait for initiating the connection pool
             if the database server is unavailable.
 
+        `fillup`:
+            If `True` provided, fills up the connection pool up to the `size`
+            parameter. Otherwise the connection pool is initially empty.
+
     Raises:
         ``TimeoutError``:
-            When Unable to fill up the connection pool due to inability
+            When unable to fill up the connection pool due to inability
             to connect to the database server.
 
     Examples:
@@ -106,14 +110,17 @@ class ConnectionPool:
                 " permitted number of simultaneous connections is exceeded."
             )
 
-    def __init__(self, config: dict, size: int = 10, timeout: int = 5) -> None:
+    def __init__(
+        self, config: dict, size: int = 10, timeout: int = 5, fillup: bool = True
+    ) -> None:
         self.config = config
         self.size = size
         self._pool = deque()
         self._closed = None
         self._reload_id = 0
         self._reload_lock = Lock()
-        self._load(float(timeout))
+        if fillup:
+            self._load(float(timeout))
 
     def __enter__(self) -> "ConnectionPool":
         return self

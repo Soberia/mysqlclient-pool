@@ -87,7 +87,7 @@ pool.close()
 
 - _class_ **`mysqlclient_pool.ConnectionPool`**
 
-  - _method_ **`__init__(config: dict, size: int = 10, timeout: int = 5) -> None`**
+  - _method_ **`__init__(config: dict, size: int = 10, timeout: int = 5, fillup: bool = True) -> None`**
 
     - _parameter_ **`config`**:  
       The keyword paramaters for creating the connection object.
@@ -98,8 +98,11 @@ pool.close()
     - _parameter_ **`timeout`**:  
       The time in seconds to wait for initiating the connection pool if the database server is unavailable.
 
+    - _parameter_ **`fillup`**:  
+      If `True` provided, fills up the connection pool up to the `size` parameter. Otherwise the connection pool is initially empty.
+
     - _exception_ **`TimeoutError`**:  
-      When Unable to fill up the connection pool due to inability to connect to the database server.
+      When unable to fill up the connection pool due to inability to connect to the database server.
 
   - _method_ **`close() -> None`**  
     Closes the connection pool and disconnects all the connections.
