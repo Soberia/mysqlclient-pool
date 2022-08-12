@@ -313,5 +313,10 @@ class ConnectionPool:
 
     @property
     def capacity(self) -> int:
-        """Amount of idle connections present in the connection pool."""
+        """The amount of idle connections present in the connection pool."""
         return len(self._pool)
+
+    @property
+    def closed(self) -> bool:
+        """The state of the connection pool."""
+        return self._closed

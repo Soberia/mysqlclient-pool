@@ -128,4 +128,7 @@ pool.close()
       When unable to initiate new connections due to maximum permitted number of simultaneous connections is exceeded.
 
   - _property_ **`capacity: int`**  
-    Amount of idle connections present in the connection pool.
+    The amount of idle connections present in the connection pool.
+
+  - _property_ **`closed: bool`**  
+    The state of the connection pool.
