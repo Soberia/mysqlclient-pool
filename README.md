@@ -4,7 +4,7 @@ This is a dynamic connection pool for [mysqlclient](https://github.com/PyMySQL/m
 
 The connection pool won't check the connectivity state of the connections before passing them to the user because in any time is still possible for the connection to drop in middle of the query. The user itself should watch for the disconnections.
 
-The connection pool is thread-safe and can be shared on multithreaded context as long as the indivisual connection object not shared between the threads. However individual pool instances are required for different processes.
+The connection pool is thread-safe and can be shared on multithreaded context as long as the individual connection object not shared between the threads. However individual pool instances are required for different processes.
 
 # 🔌 **Installation**
 
@@ -56,7 +56,7 @@ except pool.OverflowError:
     # because maximum permitted number of simultaneous
     # connections is exceeded.
     # `max_connections` variable of MySQL server configuration
-    # can be tweaked to change the behaviour.
+    # can be tweaked to change the behavior.
     pass
 except pool.DrainedError:
     # The pool can't provide a connection anymore
@@ -90,7 +90,7 @@ pool.close()
   - _method_ **`__init__(config: dict, size: int = 10, timeout: int = 5, fillup: bool = True) -> None`**
 
     - _parameter_ **`config`**:  
-      The keyword paramaters for creating the connection object.
+      The keyword parameters for creating the connection object.
 
     - _parameter_ **`size`**:  
       The minimum number of the connections in the pool.

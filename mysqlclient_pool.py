@@ -36,14 +36,14 @@ class ConnectionPool:
     error code will be thrown by the server.
 
     The connection pool is thread-safe and can be shared on multithreaded
-    context as long as the indivisual connection object not shared between
+    context as long as the individual connection object not shared between
     the threads. However individual pool instances are required for different
     processes.
     See https://peps.python.org/pep-0249/#threadsafety
 
     Args:
         `config`:
-            The keyword paramaters for creating the connection object.
+            The keyword parameters for creating the connection object.
 
         `size`:
             The minimum number of the connections in the pool.
@@ -101,7 +101,7 @@ class ConnectionPool:
         number of simultaneous connections is exceeded.
 
         `max_connections` variable of MySQL server configuration could
-        be tweaked to change the behaviour.
+        be tweaked to change the behavior.
         """
 
         def __init__(self) -> None:
@@ -254,7 +254,7 @@ class ConnectionPool:
                 number of simultaneous connections is exceeded.
         """
         # Storing the current reload ID. If this value changes during the
-        # liftime of this method, that means pool refilled with new connections
+        # lifetime of this method, that means pool refilled with new connections
         # and further pool reloads should be avoided. Also current connection
         # is also probably disconnected and shouldn't be returned to the pool.
         reload_id = self._reload_id
@@ -277,7 +277,7 @@ class ConnectionPool:
         except OperationalError as error:
             if error.args[0] in MYSQL_DC_ERRORS:
                 # Connection is disconnected. All the other connections in the
-                # pool also probably disconnected as well and the enitre pool
+                # pool also probably disconnected as well and the entire pool
                 # should be refilled with new connections.
                 #
                 # If error is `CR_SERVER_GONE_ERROR` with `2006` error code,
