@@ -3,6 +3,7 @@ from threading import Lock
 from collections import deque
 from collections.abc import Generator
 from contextlib import suppress, contextmanager
+from typing import Union
 
 from MySQLdb import connect
 from MySQLdb.cursors import Cursor, DictCursor
@@ -220,8 +221,8 @@ class ConnectionPool:
 
     @contextmanager
     def fetch(
-        self, auto_manage: bool = True, cursor_type: Cursor | DictCursor = Cursor
-    ) -> Generator[Cursor | DictCursor, None, None]:
+        self, auto_manage: bool = True, cursor_type: Union[Cursor, DictCursor] = Cursor
+    ) -> Generator[Union[Cursor, DictCursor], None, None]:
         """Returns a cursor object from a dedicated connection.
 
         This is a context manager which pulls a connection from the pool and
